@@ -1,0 +1,19 @@
+I"E(function() {
+  var task;
+
+  task = {
+    init: function() {
+      return $("#create_task").on('click', function() {
+        return console.log("hello");
+      });
+    }
+  };
+
+  $(document).on("turbolinks:load", function() {
+    if ($('.project-container').length > 0) {
+      return task.init();
+    }
+  });
+
+}).call(this);
+:ET

@@ -1,0 +1,17 @@
+I"!(function() {
+  var project;
+
+  project = {
+    init: function() {
+      return $("#create_project").on('click', function() {
+        return $("#new_project").submit();
+      });
+    }
+  };
+
+  $(document).on("turbolinks:load", function() {
+    return project.init();
+  });
+
+}).call(this);
+:ET

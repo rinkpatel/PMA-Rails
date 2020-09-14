@@ -1,0 +1,69 @@
+%nav.navbar.navbar-expand-lg.navbar-light.bg-light
+  %a.navbar-brand{href: root_path} Project Management App
+  %button.navbar-toggler{"aria-controls" => "navbarSupportedContent", "aria-expanded" => "false", "aria-label" => "Toggle navigation", "data-target" => "#navbarSupportedContent", "data-toggle" => "collapse", type: "button"}
+    %span.navbar-toggler-icon
+  #navbarSupportedContent.collapse.navbar-collapse
+    %ul.navbar-nav.mr-auto
+      %li.nav-item
+        %a.nav-link{href: "#"} Your Work
+      %li.nav-item.dropdown
+        %a#navbarDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", href: "#", role: "button"}
+          Project
+        .dropdown-menu{"aria-labelledby" => "navbarDropdown"}
+          - current_user.projects.each do |project|
+            %a.dropdown-item{href: project_path(project)}= project.name
+          .dropdown-divider
+          %a.dropdown-item{href: "#", "data-toggle"=> "modal", "data-target"=> "#createProject"} Create new project
+          .dropdown-divider
+          %a.dropdown-item{href: manage_projects_path} Manage Projects
+      %li.nav-item
+        %a.nav-link{href: "#"} Dashboards
+      %li.nav-item
+        %a.nav-link{href: "#"} People
+      %li.nav-item
+        %a.nav-link{href: "#"} Apps
+      %li.nav-item.dropdown
+        %a#navbarDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", href: "#", role: "button"}
+          = current_user.name
+        .dropdown-menu{"aria-labelledby" => "navbarDropdown"}
+          -# %a.dropdown-item{href: edit_user_registration_path} Edit account
+          -# .dropdown-divider
+          %a.dropdown-item{href: edit_user_registration_path} Edit account
+          %a.dropdown-item{href: destroy_user_session_path, "data-method"=> "delete"} Sign out
+          
+- if @project.present?
+  %nav.navbar.navbar-expand-lg.navbar-light.bg-light
+    #navbarSupportedContent.collapse.navbar-collapse
+      %ul.navbar-nav.mr-auto
+        %li.nav-item
+          %a.nav-link{href: project_path(@project)} Tasks
+        %li.nav-item
+          %a.nav-link{href: "#"} Reports
+        %li.nav-item
+          %a.nav-link{href: "#"} Backlog
+        %li.nav-item
+          %a.nav-link{href: "#"} Filters
+
+
+#createProject.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "Project", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog{:role => "document"}
+    .modal-content
+      .modal-header
+        %h5#exampleModalLabel.modal-title Add Project
+        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} ×
+      .modal-body
+        = form_for Project.new do |f|
+          .form-group
+            %label.col-form-label{:for => "name"} Name:
+            = f.text_field :name, id: "name", class: "form-control", required: true
+          .form-group
+            %label.col-form-label{:for => "description"} Description:
+            = f.text_area :description, class: "form-control", required: true
+            = f.hidden_field :user_id, value: current_user.id
+            = f.submit 'Save', class: "d-none", id: "save-project"
+      .modal-footer
+        %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"} Close
+        %button.btn.btn-primary#create_project{:type => "button"} Create
+
+#editProject.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "Project", :role => "dialog", :tabindex => "-1"}

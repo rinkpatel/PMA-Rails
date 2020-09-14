@@ -1,0 +1,47 @@
+I"(function() {
+  var task;
+
+  task = {
+    init: function() {
+      var self;
+      self = this;
+      self.form_submit();
+      self.task_edit();
+      self.task_delete();
+      return self.clickable_card();
+    },
+    form_submit: function() {
+      return $("#create_task").on('click', function() {
+        return $("#new_task").submit();
+      });
+    },
+    task_edit: function() {
+      return $("#editTask").on('click', '#update_task', function() {
+        return $(".edit_task").submit();
+      });
+    },
+    task_delete: function() {
+      return $("#editTask").on('click', '#delete_task', function() {
+        return $.ajax({
+          method: "Delete",
+          url: $(this).data("url")
+        });
+      });
+    },
+    clickable_card: function() {
+      return $('.task').on('click', function() {
+        return $.ajax({
+          url: $(this).data("url")
+        });
+      });
+    }
+  };
+
+  $(document).on("turbolinks:load", function() {
+    if ($('.task-container').length > 0) {
+      return task.init();
+    }
+  });
+
+}).call(this);
+:ET

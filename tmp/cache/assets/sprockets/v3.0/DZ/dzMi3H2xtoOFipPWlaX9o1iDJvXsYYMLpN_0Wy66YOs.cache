@@ -1,0 +1,36 @@
+I"'(function() {
+  var project;
+
+  project = {
+    init: function() {
+      var self;
+      self = this;
+      self.create_project();
+      self.edit_project();
+      return self.edit_project_view();
+    },
+    create_project: function() {
+      return $("#create_project").on('click', function() {
+        return $("#new_project").submit();
+      });
+    },
+    edit_project_view: function() {
+      return $('.edit-project').on('click', function() {
+        return $.ajax({
+          url: $(this).data("url")
+        });
+      });
+    },
+    edit_project: function() {
+      return $("#editProject").on("click", "#update_project", function() {
+        return $("#edit_project").submit();
+      });
+    }
+  };
+
+  $(document).on("turbolinks:load", function() {
+    return project.init();
+  });
+
+}).call(this);
+:ET

@@ -1,0 +1,31 @@
+I"}(function() {
+  var project;
+
+  project = {
+    init: function() {
+      var self;
+      self = this;
+      self.create_project();
+      return self.edit_project();
+    },
+    create_project: function() {
+      return $("#create_project").on('click', function() {
+        return $("#new_project").submit();
+      });
+    },
+    edit_project: function() {
+      return $('.edit-project').on('click', function() {
+        console.log("i am here");
+        return $.ajax({
+          url: $(this).data("url")
+        });
+      });
+    }
+  };
+
+  $(document).on("turbolinks:load", function() {
+    return project.init();
+  });
+
+}).call(this);
+:ET

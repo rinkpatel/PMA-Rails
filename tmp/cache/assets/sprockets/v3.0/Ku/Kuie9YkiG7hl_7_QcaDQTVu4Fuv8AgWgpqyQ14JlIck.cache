@@ -1,0 +1,19 @@
+I"W(function() {
+  var project;
+
+  project = {
+    init: function() {
+      return $("#create_project").on('click', function() {
+        return $("#new_project").submit();
+      });
+    }
+  };
+
+  $(document).on("turbolinks:load", function() {
+    if ($('.project-container').length > 0) {
+      return project.init();
+    }
+  });
+
+}).call(this);
+:ET

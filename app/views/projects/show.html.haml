@@ -1,0 +1,59 @@
+.container-fluid
+  .task-container.row.justify-content-center
+    .col-10.align-items-center.justify-content-between.mb-4.mt-4
+      .row
+        .col-6
+          %span.h3.mb-0.text-gray-800 All Tasks
+        .col-6.d-flex.justify-content-end
+          = link_to "Add Task", "", class: "btn btn-primary", "data-toggle"=> "modal", "data-target"=> "#createTask"
+    .col-10.d-flex
+      - if @project.tasks.present?
+        .card-columns
+          - @project.tasks.order("updated_at desc").each do |task|
+            .card.text-center.ht-190.task{"data-url" => edit_task_path(task)}
+              .card-body
+                %h5.card-title= task.title
+                %p.card-text= task.description
+                %p.card-text
+                  %small.text-muted= "Last updated: #{time_ago_in_words(task.updated_at)} ago"
+                  %small.text-muted= "Status in #{task.status.humanize}"
+                  
+      - else
+        %p Please add new task by clicking on Add Task.
+      
+#createTask.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "Task", :role => "dialog", :tabindex => "-1"}
+  .modal-dialog{:role => "document"}
+    .modal-content
+      .modal-header
+        %h5#exampleModalLabel.modal-title Add Task
+        %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+          %span{"aria-hidden" => "true"} ×
+      .modal-body
+        = form_for @project.tasks.new do |f|
+          .form-group
+            %label.col-form-label{:for => "recipient-name"} Title:
+            = f.text_field :title, id: "recipient-name", class: "form-control", required: true
+          .form-group
+            %label.col-form-label{:for => "description"} Description:
+            = f.text_area :description, id: "description", class: "form-control", required: true
+          .form-group
+            %label.col-form-label{:for => "status"} Status:
+            = f.select :status, Task.statuses.map {|k, v| [k.humanize.capitalize, k]}, { class: "form-control", id: "status", include_blank: false }, class: "form-control"
+          .form-group
+            %label.col-form-label{:for => "attachment"} Attachment:
+            = f.file_field :document, id: "attachment", class: "form-control-file"
+
+            = f.hidden_field :project_id
+          .form-group
+            %label.col-form-label{:for => "message-text"} Deadline:
+          .form-group.form-row
+            = f.datetime_select :deadline, {}, { class: "form-control col-2" }
+            %span.input-group-addon
+              %span.glyphicon.glyphicon-calendar
+          = f.submit 'Save', class: "d-none", id: "save-task"
+      .modal-footer
+        %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"} Close
+        %button.btn.btn-primary#create_task{:type => "button"} Create
+
+#editTask.modal.fade{"aria-hidden" => "true", "aria-labelledby" => "Task", :role => "dialog", :tabindex => "-1"}
+  

@@ -1,0 +1,30 @@
+I"O(function() {
+  var task;
+
+  task = {
+    init: function() {
+      var self;
+      self = this;
+      self.form_submit();
+      return self.clickable_card();
+    },
+    form_submit: function() {
+      return $("#create_task").on('click', function() {
+        return $("#new_task").submit();
+      });
+    },
+    clickable_card: function() {
+      return $('.task').on('click', function() {
+        return console.log("h");
+      });
+    }
+  };
+
+  $(document).on("turbolinks:load", function() {
+    if ($('.task-container').length > 0) {
+      return task.init();
+    }
+  });
+
+}).call(this);
+:ET

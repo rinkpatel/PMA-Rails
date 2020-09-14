@@ -1,0 +1,19 @@
+.modal-dialog{:role => "document"}
+  .modal-content
+    .modal-header
+      %h5#exampleModalLabel.modal-title Edit Project
+      %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+        %span{"aria-hidden" => "true"} ×
+    .modal-body
+      = form_for @project do |f|
+        .form-group
+          %label.col-form-label{:for => "name"} Name:
+          = f.text_field :name, id: "name", class: "form-control", required: true
+        .form-group
+          %label.col-form-label{:for => "description"} Description:
+          = f.text_area :description, class: "form-control", required: true
+          = f.hidden_field :user_id, value: current_user.id
+          = f.submit 'Save', class: "d-none", id: "update-project"
+    .modal-footer
+      %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"} Close
+      %button.btn.btn-primary#update_project{:type => "button"} Update

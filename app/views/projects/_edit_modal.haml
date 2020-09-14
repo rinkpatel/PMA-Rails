@@ -1,0 +1,37 @@
+.modal-dialog{:role => "document"}
+  .modal-content
+    .modal-header
+      %h5#exampleModalLabel.modal-title Edit Task
+      %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+        %span{"aria-hidden" => "true"} ×
+    .modal-body
+      = form_for @task do |f|
+        .form-group
+          %label.col-form-label{:for => "recipient-name"} Title:
+          = f.text_field :title, id: "recipient-name", class: "form-control", required: true
+        .form-group
+          %label.col-form-label{:for => "description"} Description:
+          = f.text_area :description, id: "description", class: "form-control", required: true
+        .form-group
+          %label.col-form-label{:for => "status"} Status:
+          = f.select :status, Task.statuses.map {|k, v| [k.humanize.capitalize, k]}, { class: "form-control", id: "status", include_blank: false }, class: "form-control"
+
+          = f.hidden_field :project_id
+        .form-group
+          %label.col-form-label{:for => "message-text"} Deadline:
+        .form-group.form-row
+          = f.datetime_select :deadline, {}, { class: "form-control col-2" }
+          %span.input-group-addon
+            %span.glyphicon.glyphicon-calendar
+        .form-group
+          %label.col-form-label{:for => "attachment"} Attachment:
+          = f.file_field :document, id: "attachment", class: "form-control-file"
+          - if f.object.document.attached?
+            = link_to "Click to view attached file", url_for(@task.document), target: "_blank"
+
+        = f.submit 'Save', class: "d-none", id: "update-task"
+            
+    .modal-footer
+      %button.btn.btn-secondary{"data-dismiss" => "modal", :type => "button"} Close
+      %button.btn.btn-primary#update_task{:type => "button"} Update
+      %button.btn.btn-danger#delete_task{:type => "button", "data-url" => task_path(@task)} Delete

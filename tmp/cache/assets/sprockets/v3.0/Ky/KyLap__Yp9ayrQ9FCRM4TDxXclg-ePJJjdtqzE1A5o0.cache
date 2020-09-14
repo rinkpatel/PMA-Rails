@@ -1,0 +1,36 @@
+I"ö(function() {
+  var task;
+
+  task = {
+    init: function() {
+      var self;
+      self = this;
+      self.form_submit();
+      return self.clickable_card();
+    },
+    form_submit: function() {
+      $("#create_task").on('click', function() {
+        return $("#new_task").submit();
+      });
+      return $("#update_task").on('click', function() {
+        console.log("here");
+        return $(".edit_task").submit();
+      });
+    },
+    clickable_card: function() {
+      return $('.task').on('click', function() {
+        return $.ajax({
+          url: $(this).data("url")
+        });
+      });
+    }
+  };
+
+  $(document).on("turbolinks:load", function() {
+    if ($('.task-container').length > 0) {
+      return task.init();
+    }
+  });
+
+}).call(this);
+:ET

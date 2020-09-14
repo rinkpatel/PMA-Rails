@@ -1,0 +1,27 @@
+.container-fluid
+  .task-container.row.justify-content-center
+    .col-10.align-items-center.justify-content-between.mb-4.mt-4
+      .row
+        .col-6
+          %span.h3.mb-0.text-gray-800 Manage Projects
+        .col-6.d-flex.justify-content-end
+          = link_to "Add Project", "", class: "btn btn-primary", "data-toggle"=> "modal", "data-target"=> "#createProject"
+    
+    .col-10
+      %table.table
+        %thead.thead-light
+          %tr
+            %th{:scope => "col"} #
+            %th{:scope => "col"} Name
+            %th{:scope => "col"} Description
+            %th{:scope => "col"} Action
+        %tbody
+          - @projects.each do |project|  
+            %tr
+              %th{:scope => "row"} 1
+              %td= project.name
+              %td= project.description
+              %td 
+                %button.btn.btn-primary.edit-project{:type => "button", "data-url" => edit_project_path(project)} Edit
+                = link_to 'Delete', project_path(project), class: 'btn btn-danger', data: { confirm: "Are you sure?" }, method: :delete
+                -# %button.btn.btn-danger{:type => "button", "data"=> {confirm: "Are you fucking sure?"}} Delete
