@@ -26,7 +26,7 @@ Project management uses following technologies to work properly:
 * [RSpec](https://rspec.info/) - Testing Environment
 
 ### Access Guide
-
+This is hosted on Heruko
 Just click on [Project Management](https://pma-riyank-rails.herokuapp.com/users/sign_in) to access the web application.
 
 **Create Account/Login :**
