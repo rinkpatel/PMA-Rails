@@ -25374,3 +25374,25 @@ Processing by ProjectsController#show as HTML
 Completed 200 OK in 74ms (Views: 69.5ms | ActiveRecord: 1.8ms)
 
 
+Started GET "/projects/1" for ::1 at 2020-09-15 00:09:58 +0000
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /var/lib/gems/2.5.0/gems/activerecord-5.2.4.4/lib/active_record/log_subscriber.rb:98
+Processing by ProjectsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /var/lib/gems/2.5.0/gems/activerecord-5.2.4.4/lib/active_record/log_subscriber.rb:98
+  [1m[36mProject Load (0.4ms)[0m  [1m[34mSELECT  "projects".* FROM "projects" WHERE "projects"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/projects_controller.rb:70
+  Rendering projects/show.html.haml within layouts/application
+  [1m[36mTask Load (0.4ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."project_id" = $1[0m  [["project_id", 1]]
+  ↳ app/views/projects/show.html.haml:10
+  [1m[36mTask Load (0.6ms)[0m  [1m[34mSELECT "tasks".* FROM "tasks" WHERE "tasks"."project_id" = $1 ORDER BY updated_at desc[0m  [["project_id", 1]]
+  ↳ app/views/projects/show.html.haml:12
+  Rendered projects/show.html.haml within layouts/application (167.2ms)
+  [1m[36mProject Load (0.3ms)[0m  [1m[34mSELECT "projects".* FROM "projects" WHERE "projects"."user_id" = $1[0m  [["user_id", 1]]
+  ↳ app/views/layouts/_navigation.haml:13
+  Rendered layouts/_navigation.haml (16.4ms)
+  Rendered layouts/_messages.html.erb (0.3ms)
+Completed 200 OK in 387ms (Views: 333.1ms | ActiveRecord: 17.6ms)
+
+
