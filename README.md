@@ -68,10 +68,11 @@ Go to your "projects" and "add task"
 ```
 ### Future Enchanment !
    - **Dashboard** - Personalized Dashboard 
-   - **Your Work** - differantiate team's projects and Personal work
-   - **People** - coonect with people, chat etc.
-   - **App** - manage/connect other apps
+   - **Your Work** - Differentiate team's projects and Personal work
+   - **People** - Connect with people, chat etc.
+   - **App** - Manage/connect other apps
    - **Dashoard** - User will be able to see all summary of his/her account
+   - **Bug Fixes** - There are some bugs that we are working on to solve it
 
 
 **Easy Management, Project Management!**
