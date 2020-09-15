@@ -1,5 +1,5 @@
 # Project Management
-[![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://travis-ci.org/joemccann/dillinger)
+[![Build Status](https://github.com/rinkpatel/PMA-Rails](https://github.com/rinkpatel/PMA-Rails)
 
 Project Management is a web application for effectively handling your projects and task in a very simply manner.
 
