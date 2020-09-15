@@ -1,0 +1,12 @@
+1. Register Account Page- 
+    1. In the case of password Acceptance- when I hit the register account button after entering all the details on Register Account page,  my password in vanished and the name and email details are still persistence. 
+    2. It should shows an error message or mandatory field in password field.  Eg. I enter nia as my password, it doesn't take and doesn't shows any message either.
+2. Edit Account Page- 
+     1. Reset password - what if i dont remember the current password ? Will I be able to get email link to reset or security code on mobile just to acess account but than I need current password for reset?
+3. Create Task Page- 
+    1. If we can put small message that what type of file I can attach?
+    2. Can I go backward to set date for task as a deadline ?
+    3. We can Print status in new line with some highlighting colors might help User to get clear visual on pending stuffs ?
+    4. Can we see the attched files along with status and Task names? just small attachment symbol may be?
+    5. How do I remove attachment ?
+    6. what if I want to attach multiple files ? If there is a file and I put another it overrides the old one.
