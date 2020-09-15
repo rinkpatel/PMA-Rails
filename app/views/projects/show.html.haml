@@ -10,14 +10,13 @@
       - if @project.tasks.present?
         .card-columns
           - @project.tasks.order("updated_at desc").each do |task|
-            .card.text-center.ht-190.task{"data-url" => edit_task_path(task)}
-              .card-body
-                %h5.card-title= task.title
+            .card.text-center.task.border-left-primary.shadow.h-100.py-2{"data-url" => edit_task_path(task)}
+              .card-body.py-3
+                %h5.card-title.m-0.font-weight-bold.text-primary= task.title
                 %p.card-text= task.description
                 %p.card-text
                   %small.text-muted= "Last updated: #{time_ago_in_words(task.updated_at)} ago"
                   %small.text-muted= "Status in #{task.status.humanize}"
-                  
       - else
         %p Please add new task by clicking on Add Task.
       

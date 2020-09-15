@@ -14,7 +14,7 @@
           = f.text_area :description, id: "description", class: "form-control", required: true
         .form-group
           %label.col-form-label{:for => "status"} Status:
-          = f.select :status, Task.statuses.map {|k, v| [k.humanize.capitalize, k]}, { class: "form-control", id: "status", include_blank: false }, class: "form-control"
+          = f.select :status, Task.statuses.map {|k, v| [k.humanize.capitalize, k]}, { class: "form-control dropdown mb-4", id: "status", include_blank: false }, class: "form-control dropdown"
 
           = f.hidden_field :project_id
         .form-group
